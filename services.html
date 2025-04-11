@@ -31,6 +31,90 @@
       <link rel="stylesheet" href="css/owl.carousel.min.css">
       <link rel="stylesheet" href="css/owl.theme.default.min.css">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
+      
+      <!-- Estilos para el panel de notificaciones -->
+      <style>
+         .notification-panel {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.2);
+            z-index: 1000;
+            max-width: 500px;
+            width: 90%;
+         }
+         .notification-panel h3 {
+            margin-top: 0;
+            color: #333;
+         }
+         .notification-form .form-group {
+            margin-bottom: 15px;
+         }
+         .notification-form label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+         }
+         .notification-form input,
+         .notification-form textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+         }
+         .notification-form textarea {
+            height: 100px;
+         }
+         .notification-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+         }
+         .notification-buttons button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+         }
+         .send-btn {
+            background: #4CAF50;
+            color: white;
+         }
+         .close-btn {
+            background: #f44336;
+            color: white;
+         }
+         .admin-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #2196F3;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 20px;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            z-index: 999;
+         }
+         .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 999;
+         }
+      </style>
    </head>
    <body>
       <!-- header section start -->
@@ -129,6 +213,34 @@
          </div>
       </div>
       <!-- service section end -->
+      
+      <!-- Botón flotante para administrador -->
+      <button class="admin-btn" id="adminBtn">🔔</button>
+      
+      <!-- Panel de notificaciones -->
+      <div class="overlay" id="overlay"></div>
+      <div class="notification-panel" id="notificationPanel">
+         <h3>Enviar Notificación Push</h3>
+         <form class="notification-form" id="notificationForm">
+            <div class="form-group">
+               <label for="notificationTitle">Título:</label>
+               <input type="text" id="notificationTitle" placeholder="Título de la notificación" required>
+            </div>
+            <div class="form-group">
+               <label for="notificationMessage">Mensaje:</label>
+               <textarea id="notificationMessage" placeholder="Mensaje de la notificación" required></textarea>
+            </div>
+            <div class="form-group">
+               <label for="notificationUrl">URL (opcional):</label>
+               <input type="url" id="notificationUrl" placeholder="https://tusitio.com">
+            </div>
+            <div class="notification-buttons">
+               <button type="button" class="close-btn" id="closePanel">Cerrar</button>
+               <button type="submit" class="send-btn">Enviar</button>
+            </div>
+         </form>
+      </div>
+
       <!-- footer section start -->
       <div class="footer_section margin_top90">
          <div class="location_bg">
@@ -199,7 +311,134 @@
                     items:3
                 }
             }
-         })   
+         });
+
+         // Código para notificaciones push
+         if ('Notification' in window && 'serviceWorker' in navigator) {
+            // Solicitar permiso para notificaciones
+            function requestNotificationPermission() {
+               Notification.requestPermission().then(function(permission) {
+                  if (permission === 'granted') {
+                     console.log('Permiso para notificaciones concedido');
+                     registerServiceWorker();
+                  } else {
+                     console.log('Permiso para notificaciones denegado');
+                  }
+               });
+            }
+
+            // Mostrar botón para activar notificaciones
+            function showEnableNotificationsButton() {
+               const notificationButton = document.createElement('button');
+               notificationButton.textContent = 'Activar Notificaciones';
+               notificationButton.style.cssText = `
+                  margin: 10px;
+                  padding: 10px 20px;
+                  background-color: #4CAF50;
+                  color: white;
+                  border: none;
+                  border-radius: 5px;
+                  cursor: pointer;
+               `;
+               notificationButton.addEventListener('click', requestNotificationPermission);
+               
+               document.querySelector('.copyright_section').prepend(notificationButton);
+            }
+
+            // Registrar Service Worker
+            function registerServiceWorker() {
+               navigator.serviceWorker.register('sw.js').then(function(registration) {
+                  console.log('ServiceWorker registrado con éxito:', registration.scope);
+                  return registration.pushManager.getSubscription()
+                     .then(function(subscription) {
+                        if (subscription) {
+                           return subscription;
+                        }
+                        
+                        // Clave pública VAPID - ¡REEMPLAZA ESTA CON TU CLAVE PÚBLICA!
+                        const publicVapidKey = 'BOEQSjdhorIf8M0XFNlwohK3sTzO9iJwvbYU-fuXRF0tRTkFYkmJWgUel7WoK7qFC2lUQPO2qJq2qOXH8f6yXZg';
+                        
+                        return registration.pushManager.subscribe({
+                           userVisibleOnly: true,
+                           applicationServerKey: urlBase64ToUint8Array(publicVapidKey)
+                        });
+                     });
+               }).then(function(subscription) {
+                  console.log('Usuario suscrito:', subscription);
+                  // Aquí normalmente enviarías la suscripción a tu servidor
+                  // Para este ejemplo, lo guardamos en localStorage
+                  localStorage.setItem('pushSubscription', JSON.stringify(subscription));
+               }).catch(function(error) {
+                  console.log('Error al registrar ServiceWorker:', error);
+               });
+            }
+
+            // Función auxiliar para convertir la clave VAPID
+            function urlBase64ToUint8Array(base64String) {
+               const padding = '='.repeat((4 - base64String.length % 4) % 4);
+               const base64 = (base64String + padding)
+                  .replace(/-/g, '+')
+                  .replace(/_/g, '/');
+
+               const rawData = window.atob(base64);
+               const outputArray = new Uint8Array(rawData.length);
+
+               for (let i = 0; i < rawData.length; ++i) {
+                  outputArray[i] = rawData.charCodeAt(i);
+               }
+               return outputArray;
+            }
+
+            // Verificar si ya tenemos permisos
+            document.addEventListener('DOMContentLoaded', function() {
+               if (Notification.permission === 'granted') {
+                  registerServiceWorker();
+               } else if (Notification.permission !== 'denied') {
+                  showEnableNotificationsButton();
+               }
+            });
+         }
+
+         // Panel de administración de notificaciones
+         document.addEventListener('DOMContentLoaded', function() {
+            const adminBtn = document.getElementById('adminBtn');
+            const overlay = document.getElementById('overlay');
+            const notificationPanel = document.getElementById('notificationPanel');
+            const closePanel = document.getElementById('closePanel');
+            const notificationForm = document.getElementById('notificationForm');
+
+            adminBtn.addEventListener('click', function() {
+               overlay.style.display = 'block';
+               notificationPanel.style.display = 'block';
+            });
+
+            closePanel.addEventListener('click', function() {
+               overlay.style.display = 'none';
+               notificationPanel.style.display = 'none';
+            });
+
+            overlay.addEventListener('click', function() {
+               overlay.style.display = 'none';
+               notificationPanel.style.display = 'none';
+            });
+
+            notificationForm.addEventListener('submit', function(e) {
+               e.preventDefault();
+               
+               const title = document.getElementById('notificationTitle').value;
+               const message = document.getElementById('notificationMessage').value;
+               const url = document.getElementById('notificationUrl').value || window.location.href;
+               
+               // En una implementación real, aquí enviarías la notificación al servidor
+               // Para este ejemplo, mostramos un mensaje de éxito
+               alert(`Notificación preparada para enviar:\nTítulo: ${title}\nMensaje: ${message}\nURL: ${url}`);
+               
+               // Limpiar el formulario
+               notificationForm.reset();
+               overlay.style.display = 'none';
+               notificationPanel.style.display = 'none';
+            });
+         });
       </script>   
    </body>
 </html>

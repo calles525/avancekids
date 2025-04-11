@@ -283,7 +283,7 @@ button.owl-next {
 }
 
 .service_section .owl-item.active.center .image_box {
-    margin-bottom: 30px;
+    margin-bottom: 10px;
 }
 
 .about_taital {
@@ -369,7 +369,7 @@ button.owl-next {
 }
 
 .banner_img {
-    width: 40%;
+    width: 80%;
 }
 
 .contact_bt {
@@ -384,8 +384,37 @@ button.owl-next {
     padding-top: 50px;
 }
 
+.navbar-brand{
+  
+    width: 220px;
+}
+ 
+.navbar-brand img{
+    height: 50px;
+    width: 220px;
+}
+
 .image_box {
-    padding: 30% 88px;
+    width: 600px; /* Ancho fijo (ajusta según necesites) */
+    height: 600px; /* Alto fijo (mismo valor que el ancho para mantener el círculo) */
+    background-color: #252525;
+    border-radius: 50%; /* 50% para un círculo perfecto */
+    margin: 0 auto;
+    border: 14px solid #fff;
+    display: flex; /* Para centrar la imagen */
+    justify-content: center; /* Centrado horizontal */
+    align-items: center; /* Centrado vertical */
+    overflow: hidden; /* Recorta lo que sobresalga */
+}
+
+.image_box img {
+    width: 100%; /* Ocupa todo el espacio disponible */
+    height: 100%; /* Ocupa todo el espacio disponible */
+    object-fit: cover; /* Cubre el espacio sin deformarse */
+}
+
+.contact_bt a {
+    margin-top: 50px;
 }
 
 .service_section .owl-item.active.center .image_box {

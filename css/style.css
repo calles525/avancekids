@@ -365,7 +365,7 @@ button {
 .service_section {
     width: 100%;
     float: left;
-    background: linear-gradient(90deg, #fa7e64 10%, #ebab28 94%);
+   
     height: auto;
     padding-top: 50px;
     padding-bottom: 30px;
@@ -479,15 +479,23 @@ button.owl-next {
 }
 
 .image_box {
-    width: 100%;
+    width: 500px; /* Ancho fijo (ajusta según necesites) */
+    height: 500px; /* Alto fijo (mismo valor que el ancho para mantener el círculo) */
     background-color: #252525;
-    border-radius: 100%;
+    border-radius: 50%; /* 50% para un círculo perfecto */
     margin: 0 auto;
-    text-align: center;
-    padding: 20% 88px;
     border: 14px solid #fff;
+    display: flex; /* Para centrar la imagen */
+    justify-content: center; /* Centrado horizontal */
+    align-items: center; /* Centrado vertical */
+    overflow: hidden; /* Recorta lo que sobresalga */
 }
 
+.image_box img {
+    width: 100%; /* Ocupa todo el espacio disponible */
+    height: 100%; /* Ocupa todo el espacio disponible */
+    object-fit: cover; /* Cubre el espacio sin deformarse */
+}
 .image_box:hover {
     background-color: #f1f1f1;
 }
@@ -924,3 +932,11 @@ button.owl-next {
 
 /* copyright section end */
 
+.bg-avance{
+    background: linear-gradient(90deg, rgb(44, 15, 84) 10%, rgb(68, 11, 147) 94%);;
+}
+
+iframe {
+    max-width: 100%;
+
+  }

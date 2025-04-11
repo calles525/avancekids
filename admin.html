@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Administración - Notificaciones</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f7fa;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 30px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 30px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        input, textarea, select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 16px;
+            transition: border 0.3s;
+        }
+        input:focus, textarea:focus, select:focus {
+            border-color: #3498db;
+            outline: none;
+        }
+        textarea {
+            height: 150px;
+            resize: vertical;
+        }
+        .btn {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            display: inline-block;
+            text-align: center;
+        }
+        .btn:hover {
+            background-color: #2980b9;
+        }
+        .btn-block {
+            display: block;
+            width: 100%;
+        }
+        .notification-preview {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #3498db;
+        }
+        .stats {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+            padding: 15px;
+            background: #e8f4fc;
+            border-radius: 8px;
+        }
+        .stat-item {
+            text-align: center;
+            flex: 1;
+        }
+        .stat-value {
+            font-size: 24px;
+            font-weight: bold;
+            color: #3498db;
+        }
+        .stat-label {
+            font-size: 14px;
+            color: #7f8c8d;
+        }
+        .history {
+            margin-top: 30px;
+        }
+        .history-item {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+        }
+        .history-item:last-child {
+            border-bottom: none;
+        }
+        .history-message {
+            flex: 2;
+        }
+        .history-date {
+            flex: 1;
+            text-align: right;
+            color: #7f8c8d;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1><i class="fas fa-bell"></i> Panel de Notificaciones</h1>
+        
+        <form id="notificationForm">
+            <div class="form-group">
+                <label for="title">Título de la notificación:</label>
+                <input type="text" id="title" placeholder="Ej: Nueva clase disponible" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="message">Mensaje:</label>
+                <textarea id="message" placeholder="Ej: No te pierdas nuestra nueva clase de Hip Hop este sábado" required></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label for="url">URL de destino (opcional):</label>
+                <input type="url" id="url" placeholder="https://tudanza.com/nueva-clase">
+            </div>
+            
+            <div class="form-group">
+                <label for="icon">Ícono (opcional):</label>
+                <select id="icon">
+                    <option value="default">Predeterminado</option>
+                    <option value="event">Evento</option>
+                    <option value="promo">Promoción</option>
+                    <option value="alert">Alerta</option>
+                </select>
+            </div>
+            
+            <button type="submit" class="btn btn-block"><i class="fas fa-paper-plane"></i> Enviar Notificación</button>
+        </form>
+        
+        <div class="notification-preview">
+            <h3>Vista previa de la notificación:</h3>
+            <div id="previewTitle" style="font-weight: bold; margin: 10px 0;">Título de ejemplo</div>
+            <div id="previewMessage" style="color: #555;">Este es un mensaje de ejemplo que verán los usuarios</div>
+        </div>
+        
+        <div class="stats">
+            <div class="stat-item">
+                <div class="stat-value" id="subscribersCount">0</div>
+                <div class="stat-label">Dispositivos suscritos</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" id="sentCount">0</div>
+                <div class="stat-label">Notificaciones enviadas</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" id="openRate">0%</div>
+                <div class="stat-label">Tasa de apertura</div>
+            </div>
+        </div>
+        
+        <div class="history">
+            <h3><i class="fas fa-history"></i> Historial de notificaciones</h3>
+            <div id="historyList">
+                <!-- Las notificaciones anteriores aparecerán aquí -->
+                <div class="history-item">
+                    <div class="history-message">Notificación de prueba</div>
+                    <div class="history-date">Hace 2 días</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Actualizar vista previa en tiempo real
+        document.getElementById('title').addEventListener('input', updatePreview);
+        document.getElementById('message').addEventListener('input', updatePreview);
+        
+        function updatePreview() {
+            document.getElementById('previewTitle').textContent = 
+                document.getElementById('title').value || "Título de ejemplo";
+            document.getElementById('previewMessage').textContent = 
+                document.getElementById('message').value || "Este es un mensaje de ejemplo que verán los usuarios";
+        }
+        
+        // Manejar el envío del formulario
+        document.getElementById('notificationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const title = document.getElementById('title').value;
+            const message = document.getElementById('message').value;
+            const url = document.getElementById('url').value;
+            const icon = document.getElementById('icon').value;
+            
+            // Aquí iría la conexión con tu backend para enviar la notificación
+            // Por ahora simulamos el envío
+            sendNotificationToBackend(title, message, url, icon);
+        });
+        
+        function sendNotificationToBackend(title, message, url, icon) {
+            // En una implementación real, esto haría una llamada a tu API
+            console.log("Enviando notificación al backend:", { title, message, url, icon });
+            
+            // Simular respuesta del servidor
+            setTimeout(() => {
+                alert(`Notificación enviada con éxito!\nTítulo: ${title}\nMensaje: ${message}`);
+                
+                // Añadir al historial
+                addToHistory(title, message);
+                
+                // Actualizar estadísticas
+                updateStats();
+            }, 1000);
+        }
+        
+        function addToHistory(title, message) {
+            const historyList = document.getElementById('historyList');
+            const now = new Date();
+            const dateStr = now.toLocaleDateString() + ' ' + now.toLocaleTimeString();
+            
+            const historyItem = document.createElement('div');
+            historyItem.className = 'history-item';
+            historyItem.innerHTML = `
+                <div class="history-message">${title}</div>
+                <div class="history-date">${dateStr}</div>
+            `;
+            
+            historyList.insertBefore(historyItem, historyList.firstChild);
+        }
+        
+        function updateStats() {
+            // Simular datos - en una app real estos vendrían del backend
+            document.getElementById('subscribersCount').textContent = 
+                Math.floor(Math.random() * 100) + 50;
+            document.getElementById('sentCount').textContent = 
+                parseInt(document.getElementById('sentCount').textContent) + 1;
+            document.getElementById('openRate').textContent = 
+                (Math.random() * 30 + 20).toFixed(1) + '%';
+        }
+        
+        // Inicializar
+        updatePreview();
+        updateStats();
+    </script>
+</body>
+</html>
