@@ -307,6 +307,8 @@ button.owl-next {
 
 .client_main {
     border-radius: 10px;
+    border-top-left-radius: 130px;
+    border-bottom-left-radius: 130px;
 }
 
 .client_right {
@@ -314,6 +316,8 @@ button.owl-next {
 }
 .client_main_2 {
     border-radius: 10px;
+    border-top-right-radius: 130px;
+    border-bottom-right-radius: 130px;
 }
 .client_right_2 {
     padding-top: 15px;
@@ -441,6 +445,8 @@ button.owl-next {
 
 .client_main {
     border-radius: 10px;
+    border-top-left-radius: 130px;
+    border-bottom-left-radius: 130px;
 }
 
 .client_right {
@@ -448,6 +454,8 @@ button.owl-next {
 }
 .client_main_2 {
     border-radius: 10px;
+    border-top-right-radius: 130px;
+    border-bottom-right-radius: 130px;
 }
 .client_right_2 {
     padding-top: 15px;
