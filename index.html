@@ -67,19 +67,17 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                <ul class="navbar-nav mr-auto">
-                  <li class="nav-item active">
-                     <a class="nav-link" href="#programa">Programa</a>
-                  </li>
+
                   <li class="nav-item">
                      <a class="nav-link" href="#ubicacion">¿Ubicación?</a>
                   </li>
                   <li class="nav-item">
                      <a class="nav-link" href="#conferencistas">Conferencistas</a>
                   </li>
-             
-               
+
+
                </ul>
-            
+
             </div>
          </nav>
       </div>
@@ -112,71 +110,149 @@
          <h1 class="service_taital">Conferencistas</h1>
          <div class="service_section_2 layout_padding">
             <div class="owl-carousel owl-theme">
-            
-               <div class="item">
+               <!-- Génesis Suárez -->
+               <div class="item" data-toggle="modal" data-target="#genesisModal">
                   <div class="image_box">
-                     <img src="images/gene.jpg" alt="#" />
+                     <img src="images/gene.jpg" alt="Génesis Suárez" />
                   </div>
                   <h3 class="sound_text">Génesis <br>Suárez</h3>
-                <!--  <div class="buy_bt"><a href="#">Read More</a></div> -->
                </div>
-               <div class="item">
+
+               <!-- Juanita De Rivera -->
+               <div class="item" data-toggle="modal" data-target="#juanitaModal">
                   <div class="image_box">
-                     <img src="images/juanita.jpg" alt="#" />
+                     <img src="images/juanita.jpg" alt="Juanita De Rivera" />
                   </div>
                   <h3 class="sound_text">Juanita <br>De Rivera</h3>
-                <!--  <div class="buy_bt"><a href="#">Read More</a></div> -->
                </div>
-               <div class="item">
+
+               <!-- Victor Martinez -->
+               <div class="item" data-toggle="modal" data-target="#victorModal">
                   <div class="image_box">
-                     <img src="images/predicador.png" alt="#" />
+                     <img src="images/predicador.png" alt="Victor Martinez" />
                   </div>
                   <h3 class="sound_text">Victor <br>Martinez</h3>
-                <!--  <div class="buy_bt"><a href="#">Read More</a></div> -->
                </div>
-               <div class="item">
+
+               <!-- Obispo Carlos Borjas -->
+               <div class="item" data-toggle="modal" data-target="#carlosModal">
                   <div class="image_box">
-                     <img src="images/carlos.jpg" alt="#" />
+                     <img src="images/carlos.jpg" alt="Obispo Carlos Borjas" />
                   </div>
                   <h3 class="sound_text">Obispo Carlos <br>Borjas</h3>
-                <!--  <div class="buy_bt"><a href="#">Read More</a></div> -->
                </div>
-             
-               <div class="item">
+
+               <!-- Elementos duplicados (si son necesarios) -->
+               <div class="item" data-toggle="modal" data-target="#genesisModal">
                   <div class="image_box">
-                     <img src="images/gene.jpg" alt="#" />
+                     <img src="images/gene.jpg" alt="Génesis Suárez" />
                   </div>
                   <h3 class="sound_text">Génesis <br>Suárez</h3>
-                <!--  <div class="buy_bt"><a href="#">Read More</a></div> -->
                </div>
-               <div class="item">
+               <div class="item" data-toggle="modal" data-target="#juanitaModal">
                   <div class="image_box">
-                     <img src="images/juanita.jpg" alt="#" />
+                     <img src="images/juanita.jpg" alt="Juanita De Rivera" />
                   </div>
                   <h3 class="sound_text">Juanita <br>De Rivera</h3>
-                <!--  <div class="buy_bt"><a href="#">Read More</a></div> -->
                </div>
-               <div class="item">
+               <div class="item" data-toggle="modal" data-target="#victorModal">
                   <div class="image_box">
-                     <img src="images/predicador.png" alt="#" />
+                     <img src="images/predicador.png" alt="Victor Martinez" />
                   </div>
                   <h3 class="sound_text">Victor <br>Martinez</h3>
-                <!--  <div class="buy_bt"><a href="#">Read More</a></div> -->
                </div>
-               <div class="item">
+               <div class="item" data-toggle="modal" data-target="#carlosModal">
                   <div class="image_box">
-                     <img src="images/carlos.jpg" alt="#" />
+                     <img src="images/carlos.jpg" alt="Obispo Carlos Borjas" />
                   </div>
                   <h3 class="sound_text">Obispo Carlos <br>Borjas</h3>
-                <!--  <div class="buy_bt"><a href="#">Read More</a></div> -->
                </div>
-             
+            </div>
+
+            <!-- Modales -->
+            <!-- Modal Génesis Suárez -->
+            <div class="modal fade" id="genesisModal" tabindex="-1" role="dialog" aria-labelledby="genesisModalLabel"
+               aria-hidden="true">
+               <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                   
+                     <div class="modal-body text-center">
+                        <h1 class="fw-bold" id="genesisModalLabel">Génesis Suárez</h1>
+
+                        <img src="images/gene.jpg" alt="Génesis Suárez" class="img-fluid mb-3"
+                           style="max-height: 300px;">
+                        <a href="documentos/genesis.pdf" class="btn btn-primary mt-3 col-md-12" download>Descargar
+                           Documento</a>
+                        <button type="button" class="btn btn-secondary mt-2 col-md-12" data-dismiss="modal">Cerrar</button>
+                     </div>
+                  </div>
+               </div>
+            </div>
+
+            <!-- Modal Juanita De Rivera -->
+            <div class="modal fade" id="juanitaModal" tabindex="-1" role="dialog" aria-labelledby="juanitaModalLabel"
+               aria-hidden="true">
+               <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                 
+                     <div class="modal-body text-center">
+                        <h1 class="fw-bold" id="juanitaModalLabel">Juanita De Rivera</h1>
+                        <img src="images/juanita.jpg" alt="Juanita De Rivera" class="img-fluid mb-3"
+                           style="max-height: 300px;">
+                
+                        <a href="documentos/juanita.pdf" class="btn btn-primary mt-3 col-md-12" download>Descargar
+                           Documento</a>
+                        <button type="button" class="btn btn-secondary mt-2 col-md-12" data-dismiss="modal">Cerrar</button>
+                     </div>
+                  </div>
+               </div>
+            </div>
+
+            <!-- Modal Victor Martinez
+            <div class="modal fade" id="victorModal" tabindex="-1" role="dialog" aria-labelledby="victorModalLabel"
+               aria-hidden="true">
+               <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h5 class="fw-bold" id="victorModalLabel">Victor Martinez</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                           <span aria-hidden="true">&times;</span>
+                        </button>
+                     </div>
+                     <div class="modal-body text-center">
+                        <img src="images/predicador.png" alt="Victor Martinez" class="img-fluid mb-3"
+                           style="max-height: 300px;">
+                        <p>Información adicional sobre Victor Martinez...</p>
+                        <a href="documentos/victor.pdf" class="btn btn-primary mt-3 col-md-12" download>Descargar
+                           Documento</a>
+                        <button type="button" class="btn btn-secondary mt-2 col-md-12" data-dismiss="modal">Cerrar</button>
+                     </div>
+                  </div>
+               </div>
+            </div> -->
+
+            <!-- Modal Obispo Carlos Borjas -->
+            <div class="modal fade" id="carlosModal" tabindex="-1" role="dialog" aria-labelledby="carlosModalLabel"
+               aria-hidden="true">
+               <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+
+                     <div class="modal-body text-center">
+                        <h1 class="fw-bold" id="carlosModalLabel">Obispo Carlos Borjas</h1>
+                        <img src="images/carlos.jpg" alt="Obispo Carlos Borjas" class="img-fluid mb-3"
+                           style="max-height: 300px;">
+                        <a href="./documentos/GERENCIA.pdf" class="btn btn-primary mt-3 col-md-12" download>Descargar
+                           Documento</a>
+                        <button type="button" class="btn btn-secondary mt-2 col-md-12" data-dismiss="modal">Cerrar</button>
+                     </div>
+                  </div>
+               </div>
             </div>
          </div>
       </div>
    </div>
    <!-- service section end -->
-   <!-- about section start -->
+   <!-- about section start
    <div class="about_section layout_padding" id="programa">
       <div class="container">
          <div class="about_main">
@@ -190,10 +266,10 @@
             </div>
          </div>
       </div>
-   </div>
-   
+   </div> -->
 
-   <div class="client_sectiion bg-avance mt-5">
+
+   <div class="client_sectiion bg-avance ">
       <div class="container">
          <div class="row">
             <div class="col-sm-12">
@@ -220,7 +296,7 @@
                            <h3 class="name_text">Keila Parra <span style="float: right;"><img
                                     src="images/quick-icon.png"></span></h3>
                            <p class="dolor_text">Presidenta Regional</p>
-                         
+
                         </div>
                      </div>
                      <div class="client_main_2">
@@ -228,7 +304,9 @@
                            <h3 class="name_text">Diany Medina <span style="float: left;"><img
                                     src="images/quick-icon.png"></span></h3>
                            <p class="dolor_text">Viceprecidenta Regional</p>
-                          
+                           <p>Líder es aquel que influye en el crecimiento Personal, Emocional y Espiritual de Sus Discípulos
+                              "Tus acciones inspiran a otros".</p>
+
                         </div>
                         <div class="client_left_2">
                            <div class="client_img"><img src="images/2.png"></div>
@@ -246,7 +324,7 @@
                            <h3 class="name_text">Yisel Hernandez <span style="float: right;"><img
                                     src="images/quick-icon.png"></span></h3>
                            <p class="dolor_text">Secretaria Regional</p>
-                          
+
                         </div>
                      </div>
                      <div class="client_main_2">
@@ -254,7 +332,8 @@
                            <h3 class="name_text">Yelimar Altuve <span style="float: left;"><img
                                     src="images/quick-icon.png"></span></h3>
                            <p class="dolor_text">Tesorera</p>
-                  
+                           <p>Amor, pasión y dedicación es lo que se necesita para un trabajo eficaz</p>
+
                         </div>
                         <div class="client_left_2">
                            <div class="client_img"><img src="images/4.png"></div>
@@ -272,7 +351,7 @@
                            <h3 class="name_text"> Jessica Pacheco <span style="float: right;"><img
                                     src="images/quick-icon.png"></span></h3>
                            <p class="dolor_text">Sub Secretaria </p>
-                          
+
                         </div>
                      </div>
                      <div class="client_main_2">
@@ -280,7 +359,8 @@
                            <h3 class="name_text"> Wilbel Gonzáles<span style="float: left;"><img
                                     src="images/quick-icon.png"></span></h3>
                            <p class="dolor_text">Sub Tesorero </p>
-                          
+                           <p>Llamados a Dejar Huellas y no Cicatrices</p>
+
                         </div>
                         <div class="client_left_2">
                            <div class="client_img"><img src="images/6.png"></div>
@@ -298,7 +378,7 @@
                            <h3 class="name_text">Yenny Carrillo <span style="float: right;"><img
                                     src="images/quick-icon.png"></span></h3>
                            <p class="dolor_text">Vocal I</p>
-                     
+
                         </div>
                      </div>
                      <div class="client_main_2">
@@ -306,7 +386,7 @@
                            <h3 class="name_text">Betzaida Escola <span style="float: left;"><img
                                     src="images/quick-icon.png"></span></h3>
                            <p class="dolor_text">Vocal II</p>
-                         
+
                         </div>
                         <div class="client_left_2">
                            <div class="client_img"><img src="images/8.png"></div>
@@ -324,7 +404,8 @@
                            <h3 class="name_text">Ayrlen Bello <span style="float: right;"><img
                                     src="images/quick-icon.png"></span></h3>
                            <p class="dolor_text">Vocal III</p>
-                     
+                           <p>Un buen líder, se deja guiar por el Espiritu Santo, viviendo una vida al servicio de Dios con integridad, pasión y constancia. No olvides que fuiste llamado con propósito.</p>
+
                         </div>
                      </div>
                      <div class="client_main_2">
@@ -332,7 +413,7 @@
                            <h3 class="name_text">Aron Hernandez<span style="float: left;"><img
                                     src="images/quick-icon.png"></span></h3>
                            <p class="dolor_text">Relacionista Público</p>
-                         
+
                         </div>
                         <div class="client_left_2">
                            <div class="client_img"><img src="images/10.png"></div>
@@ -350,10 +431,10 @@
                            <h3 class="name_text">Jesus Mejias<span style="float: right;"><img
                                     src="images/quick-icon.png"></span></h3>
                            <p class="dolor_text">Vocal de RRPP</p>
-                     
+
                         </div>
                      </div>
-                    
+
                   </div>
                </div>
             </div>
@@ -369,16 +450,11 @@
             <div class="row">
                <div class="col-sm-12">
                   <div class="contact_main layout_padding">
-                     <iframe 
-                   
-                     src="https://docs.google.com/forms/d/e/1FAIpQLSdzfzGCHmWaCABxvTRBx8frQPYLyYUiCotobc5a5drzBfIafg/viewform?embedded=true" 
-                     width="640" 
-                     height="900" 
-                     frameborder="0" 
-                     marginheight="0" 
-                     marginwidth="0">
-                     Cargando…
-                   </iframe>
+                     <iframe
+                        src="https://docs.google.com/forms/d/e/1FAIpQLSdzfzGCHmWaCABxvTRBx8frQPYLyYUiCotobc5a5drzBfIafg/viewform?embedded=true"
+                        width="640" height="900" frameborder="0" marginheight="0" marginwidth="0">
+                        Cargando…
+                     </iframe>
                   </div>
                </div>
             </div>
@@ -388,19 +464,15 @@
    <!-- contact section end -->
    <!-- footer section start -->
    <div class="footer_section">
-   
+
 
 
       <div class="map_main" id="ubicacion">
          <div class="map-responsive">
             <iframe
-    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3945.585301813752!2d-71.2024686!3d8.539577999999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e647d52cb0b642d%3A0xf179c497c580d581!2sPOSADA%20EL%20CORONEL!5e0!3m2!1ses-419!2sve!4v1742059955736!5m2!1ses-419!2sve"
-    width="100%" 
-    height="450" 
-    frameborder="0" 
-    style="border:0;" 
-    allowfullscreen="">
-  </iframe>
+               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3945.585301813752!2d-71.2024686!3d8.539577999999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e647d52cb0b642d%3A0xf179c497c580d581!2sPOSADA%20EL%20CORONEL!5e0!3m2!1ses-419!2sve!4v1742059955736!5m2!1ses-419!2sve"
+               width="100%" height="450" frameborder="0" style="border:0;" allowfullscreen="">
+            </iframe>
          </div>
       </div>
    </div>
